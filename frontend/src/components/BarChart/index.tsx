@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { SaleSuccess } from 'types/sale'
 import { useEffect, useState } from 'react'
 import Chart from 'react-apexcharts'
-import { round, SaleSuccess } from 'utils/format'
+import { round } from 'utils/format'
 import { BASE_URL } from 'utils/requests'
 
 type SeriesData = {
@@ -17,7 +18,7 @@ type ChartData = {
 }
 
 const BarChart = () => {
-    
+
     const [chartData, setChartData] = useState<ChartData>({
         labels: {
             categories: []
@@ -25,7 +26,7 @@ const BarChart = () => {
         series: [
             {
                 name: "",
-                data: []                   
+                data: []
             }
         ]
     });
@@ -38,19 +39,20 @@ const BarChart = () => {
                 const myLabels = data.map(x => x.sellerName);
                 const mySeries = data.map(x => round(100.0 * x.deals / x.visited, 1));
 
-                setChartData({labels: {
-                    categories: myLabels
-                },
-                series: [
-                    {
-                        name: "% Success",
-                        data: mySeries                 
-                    }
-                ]
-            })
+                setChartData({
+                    labels: {
+                        categories: myLabels
+                    },
+                    series: [
+                        {
+                            name: "% Success",
+                            data: mySeries
+                        }
+                    ]
+                })
                 console.log(chartData);
             })
-    }, [] );
+    }, []);
 
     const options = {
         plotOptions: {
@@ -59,10 +61,10 @@ const BarChart = () => {
             }
         },
     };
-    
-    return(
-        <Chart 
-            options={{ ...options, xaxis: chartData.labels}}
+
+    return (
+        <Chart
+            options={{ ...options, xaxis: chartData.labels }}
             series={chartData.series}
             type="bar"
             height="240"

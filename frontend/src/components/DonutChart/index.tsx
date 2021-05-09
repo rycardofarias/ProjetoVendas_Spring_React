@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SaleSum } from 'components/types/sale';
+import { SaleSum } from 'types/sale';
 import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts'
 import { BASE_URL } from 'utils/requests';
@@ -22,7 +22,6 @@ const DonutChart = () => {
                 const mySeries = data.map(x => x.sum);
 
                 setChartData({ labels: myLabels, series: mySeries })
-                console.log(chartData);
             })
     }, [] );
 

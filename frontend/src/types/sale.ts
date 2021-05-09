@@ -1,37 +1,34 @@
 import { Seller } from './seller';
 
 export type Sale = {
-    id : number,
-    visited : number,
-    deals : number,
-    amount: number,
+    id : number;
+    visited : number;
+    deals : number;
+    amount: number;
     date : string;
-    seller : Seller;
+    sellerDTO : Seller;
 }
 
 export type SalePage = {
     content?: Sale[];
-    last : boolean,
-    totalPages : number,
-    number : number,
+    last : boolean;
+    totalElements : number;
+    totalPages : number;
+    number : number;
     size ? : number;
-    first: boolean,
+    first: boolean;
     numberOfElements ? : number,
-    empty ? : boolean
+    empty ? : boolean;
 }
 
 export type SaleSum = {
-    sellerName: string,
-    sum: number
+    sellerName: string;
+    sum: number;
+    
 }
 
 export type SaleSuccess = {
     sellerName: string;
     visited: number;
     deals: number;
-}
-
-export const round = (value: number, precision: number) => {
-    var multiplier = Math.pow(10, precision || 0);
-    return Math.round(value * multiplier) / multiplier;
 }
